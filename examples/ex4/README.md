@@ -14,13 +14,13 @@ docker run \
     rabbitmq
 ```
 
-Note that 'async' setting is set to `True`
+Note that '_async' setting is set to `True`
 
 ```python
 # settings.py
 MSG_SETTINGS = {
     ...
-    'async': True,
+    '_async': True,
     ...
 }
 ```
