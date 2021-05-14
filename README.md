@@ -153,7 +153,7 @@ to true.
 
 ```python
 MSG_SETTINGS = {
-    'async': True,
+    '_async': True,
     ...
 }
 ```
@@ -168,7 +168,7 @@ or
 
 ```python
 msg = Msg.new(*args, dispatch_now=False, **kwargs)
-msg.send(async=True)
+msg.send(_async=True)
 ```
 
 ## Default handlers base classes
@@ -260,7 +260,7 @@ This way will ensure that instantiable (non-abstract) class that inherits from
 Main django-msg settings are defined in `MSG_SETTINGS` and it has following keys
 (defaults are as follow):
 
-- `async=False`
+- `_async=False`
 - `handlers=[]`
 - `default_lang='en'`
 

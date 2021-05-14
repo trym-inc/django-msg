@@ -117,7 +117,7 @@ STATIC_URL = '/static/'
 ADMIN_LOGIN_URL = 'http://localhost:8000/admin'
 
 MSG_SETTINGS = {
-    'async': False,
+    '_async': False,
     'handlers': [
         'app.messages_handlers.AccountCreatedHandler',
     ]
