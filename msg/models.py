@@ -1,7 +1,6 @@
 from enum import Enum
 from typing import Union
 
-from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
@@ -73,10 +72,10 @@ class Msg(models.Model):
         verbose_name=_('Language'),
         max_length=32,
     )
-    recipients = JSONField(
+    recipients = models.JSONField(
         verbose_name=_('Recipients'),
     )
-    context = JSONField(
+    context = models.JSONField(
         verbose_name=_('Context'),
         default={},
         blank=True,
@@ -93,11 +92,11 @@ class Msg(models.Model):
     objects = MsgManager()
 
     @staticmethod
-    def new(*args, dispatch_now, async=msg_settings.async, **kwargs):
+    def new(*args, dispatch_now, _async=msg_settings._async, **kwargs):
         msg = Msg.objects.create_from_any(*args, **kwargs)
 
         if dispatch_now:
-            msg.dispatch(async=async)
+            msg.dispatch(_async=_async)
 
         return msg
 
@@ -107,9 +106,9 @@ class Msg(models.Model):
         if save:
             self.save()
 
-    def dispatch(self, async=msg_settings.async):
+    def dispatch(self, _async=msg_settings._async):
         self.set_status(Msg.Status.PENDING, save=True)
-        if async:
+        if _async:
             self._dispatch_delay()
         else:
             self._dispatch()
