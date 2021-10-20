@@ -91,6 +91,9 @@ class Msg(models.Model):
 
     objects = MsgManager()
 
+    class Meta:
+        app_label = "msg"
+
     @staticmethod
     def new(*args, dispatch_now, _async=msg_settings._async, **kwargs):
         msg = Msg.objects.create_from_any(*args, **kwargs)
