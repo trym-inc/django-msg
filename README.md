@@ -115,7 +115,7 @@ string in handler attributes.
 You can specify language of the message by `language` argument in `MsgCtx`
 
 ```python
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from msg.handlers import Handler
 from msg.handlers import MsgCtx
